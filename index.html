@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Visual Starlog</title>
+  <link rel="stylesheet" href="/shared/style.css">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="bar vbar">
+    <h1>Visual Starlog</h1>
+    <input id="title" class="title" aria-label="Presentation title" value="My presentation">
+    <span class="spacer"></span>
+    <button id="undo">Undo</button>
+    <button id="redo">Redo</button>
+    <button id="new">New</button>
+    <button id="open">Open…</button>
+    <button id="save">Save</button>
+    <button id="run" title="Run the presentation in SWI-Prolog with Starlog">Run</button>
+    <button id="present" class="primary">Present</button>
+    <select id="export" aria-label="Export"><option value="">Export…</option><option value="pl">Starlog file (.pl)</option><option value="html">Standalone HTML presentation</option><option value="prolog">Plain Prolog (.pl)</option></select>
+  </header>
+  <main class="vs">
+    <nav class="panel slides" aria-label="Slides"><ol id="list"></ol><button id="addSlide" type="button">Add slide</button></nav>
+    <section class="panel editor" id="editor"></section>
+    <section class="panel preview">
+      <nav class="tabs" id="tabs" role="tablist"></nav>
+      <div id="view"></div>
+    </section>
+  </main>
+  <div id="show" class="show" hidden>
+    <div id="stage" class="stage"></div>
+    <div class="shownav"><button id="prev" aria-label="Previous slide">←</button><span id="at"></span><button id="next" aria-label="Next slide">→</button><button id="stop" aria-label="Stop presenting">✕</button></div>
+  </div>
+  <form id="say" class="row say"><input id="sayText" type="text" placeholder='Tell Lucian: "add a slide called Prices", "add a point to slide 2: ten minutes a day", "add a goal to slide 2: X is [1] &amp; [2]", "present"'><button>Do</button></form>
+  <p id="reply" class="quiet" aria-live="polite"></p>
+</body>
+</html>

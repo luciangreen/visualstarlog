@@ -39,7 +39,7 @@ check(runs[2]?.answers?.[0] === 'N = 3', 'maths: N is reverse([1,2,3]) >> length
 check(find(maths, 1)?.items[1]?.answers?.[0] === 'X = 14', 'maths: X is 2 + 3 * 4');
 const bad = find(maths, 3)?.items ?? [];
 check(bad[0]?.ok === false && bad[0]?.answers?.[0] === 'false', 'maths: a failing goal says false');
-check(bad[1]?.ok === false && bad[1]?.answers?.[0]?.length > 0, `maths: a goal that cannot be read says why (${bad[1]?.answers?.[0]})`);
+check(bad[1]?.ok === false && /syntax/i.test(bad[1]?.answers?.[0] ?? '') && !/^error\(/.test(bad[1]?.answers?.[0] ?? ''), `maths: a goal that cannot be read says why, in words (${bad[1]?.answers?.[0]})`);
 
 // office: a Writer document, a Counter table, an Etcher drawing, a missing file
 const office = parseRuntime(run('json', ex('office.pl')));

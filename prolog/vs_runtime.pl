@@ -30,8 +30,13 @@ vs_main :-
     catch(vs_run(Args), E, (message_to_codes(E, Msg), format(user_error, "Visual Starlog: ~s~n", [Msg]), halt(1))),
     halt(0).
 
-message_to_codes(E, Codes) :- message_to_codes(E, [], Codes0), !, Codes = Codes0.
-message_to_codes(E, _, Codes) :- format(codes(Codes), "~q", [E]).
+% An error as SWI-Prolog words it ("Syntax error: ..."), on one line.
+message_to_codes(E, Codes) :-
+    catch(( phrase('$messages':translate_message(E), Lines), Lines \== [],
+            with_output_to(codes(C0), print_message_lines(current_output, '', Lines)) ), _, fail), !,
+    string_codes(S0, C0), split_string(S0, "\n", " \t", Parts0), exclude(==(""), Parts0, Parts),
+    atomic_list_concat(Parts, ' ', A), atom_codes(A, Codes).
+message_to_codes(E, Codes) :- format(codes(Codes), "~q", [E]).
 
 vs_run([json, Dir, File]) :- !, vs_load(Dir, File), vs_json(File).
 vs_run([html, Dir, File, Out]) :- !, vs_load(Dir, File), vs_html(File, Out).
