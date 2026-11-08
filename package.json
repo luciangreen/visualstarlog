@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "Visual Starlog: presentations written in Prolog with Starlog syntax, run in SWI-Prolog and shown in LucianOS with Lucian Office documents and the RetroMR character",
   "type": "module",
-  "scripts": { "test": "node --test test/*.test.js", "check-examples": "node scripts/check-examples.mjs" },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "check-examples": "node scripts/check-examples.mjs",
+    "ios": "node io/make-ios.mjs"
+  },
   "license": "BSD-3-Clause"
 }
