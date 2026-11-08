@@ -1,0 +1,402 @@
+Visual Starlog: 200 inputs and outputs, from real runs (npm run ios writes this file; npm test checks it).
+
+1. textExpr("Apple about dog cat thinks list meditates.")
+   => {"expr":"\"Apple about dog cat thinks list meditates.\"","vars":[]}
+2. pString("student tree\n")
+   => "\"student tree\\n\""
+3. goalsOf("double(X, Y) :- Y is X * 2.\nsquare(X, Y) :- Y is X * X.")
+   => ["double(X, Y) :- Y is X * 2.","square(X, Y) :- Y is X * X"]
+4. toStarlog("happy", [{"kind":"list","title":"thinks garden sells","text":"House book meditates idea house dog.","items":["house","runs"],"goal":"greeting(\"Lucian\", S)"},{"kind":"title","title":"person","text":"The logic happy list true music dog.","items":["teacher runs","cat data"],"goal":""}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"happy\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n"
+5. parseRuntime("junk before\n{\"slides\":[]}")
+   => {"slides":[]}
+6. draftSlides("buys", "")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+7. textExpr("back\\slash about writes")
+   => {"expr":"\"back\\\\slash about writes\"","vars":[]}
+8. pString("logic a runs false \"x\"")
+   => "\"logic a runs false \\\"x\\\"\""
+9. goalsOf("greeting(Name, S) :- string_concat(\"Hello, \", Name, S).")
+   => ["greeting(Name, S) :- string_concat(\"Hello, \", Name, S)"]
+10. toStarlog("about runs", [{"kind":"title","title":"runs","text":"Sells reads with with garden blue logic.","items":["cat true","book"],"goal":"double(3, Y)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"about runs\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n"
+11. parseRuntime("not json")
+   => null
+12. draftSlides("thinks false", "double(X, Y) :- Y is X * 2.\nsquare(X, Y) :- Y is X * X.")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+13. textExpr("{A} and {B}")
+   => {"expr":"A : \" and \" : B","vars":["A","B"]}
+14. pString("music the\n")
+   => "\"music the\\n\""
+15. goalsOf("double(X, Y) :- Y is X * 2.\nsquare(X, Y) :- Y is X * X.")
+   => ["double(X, Y) :- Y is X * 2.","square(X, Y) :- Y is X * X"]
+16. toStarlog("about finds buys", [{"kind":"title","title":"house blue","text":"Garden number number.","items":["quickly","true"],"goal":"greeting(\"Lucian\", S)"},{"kind":"text","title":"list apple","text":"About algorithm number reads student simple the meditates thinks.","items":["thinks about","student reads"],"goal":"double(3, Y)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"about finds buys\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n"
+17. parseRuntime("{\"slides\":[{\"title\":\"happy about\",\"text\":\"blue logic\"}]}")
+   => {"slides":[{"title":"happy about","text":"blue logic"}]}
+18. draftSlides("reads tree list", "reverse_words(S, R) :- split_string(S, \" \", \"\", W), reverse(W, V), atomic_list_concat(V, \" \", R).")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+19. textExpr("{A} and {B}")
+   => {"expr":"A : \" and \" : B","vars":["A","B"]}
+20. pString("apple student happy \"x\"")
+   => "\"apple student happy \\\"x\\\"\""
+21. goalsOf("fact(0, 1) :- !.\nfact(N, F) :- N1 is N - 1, fact(N1, F1), F is N * F1.")
+   => ["fact(0, 1) :- !.","fact(N, F) :- N1 is N - 1, fact(N1, F1), F is N * F1"]
+22. toStarlog("blue number", [{"kind":"result","title":"true","text":"Happy simple about algorithm green reads writes buys tree.","items":["with","buys true"],"goal":"greeting(\"Lucian\", S)"},{"kind":"result","title":"tree","text":"Garden true blue writes book meditates happy simple.","items":["quickly data","number idea"],"goal":"greeting(\"Lucian\", S)"},{"kind":"text","title":"the","text":"Number happy prolog prolog a a cat logic apple.","items":["quickly","number and"],"goal":"double(3, Y)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"blue number\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n\nslide(5, \"[object Object]\", []).\n"
+23. parseRuntime("not json")
+   => null
+24. draftSlides("true tree house", "fact(0, 1) :- !.\nfact(N, F) :- N1 is N - 1, fact(N1, F1), F is N * F1.")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+25. textExpr("A false tree cat.")
+   => {"expr":"\"A false tree cat.\"","vars":[]}
+26. pString("blue\n")
+   => "\"blue\\n\""
+27. goalsOf("double(X, Y) :- Y is X * 2.\nsquare(X, Y) :- Y is X * X.")
+   => ["double(X, Y) :- Y is X * 2.","square(X, Y) :- Y is X * X"]
+28. toStarlog("person", [{"kind":"title","title":"runs","text":"Runs teacher sells the number blue sells idea reads.","items":["data","data"],"goal":""}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"person\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n"
+29. parseRuntime("{\"error\":\"data happy finds\"}")
+   => {"error":"data happy finds"}
+30. draftSlides("with", "main :- writeln(hello).")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+31. textExpr("Runs simple data teacher book algorithm about green.")
+   => {"expr":"\"Runs simple data teacher book algorithm about green.\"","vars":[]}
+32. pString("happy algorithm quickly \\ ")
+   => "\"happy algorithm quickly \\\\ \""
+33. goalsOf("double(X, Y) :- Y is X * 2.\nsquare(X, Y) :- Y is X * X.")
+   => ["double(X, Y) :- Y is X * 2.","square(X, Y) :- Y is X * X"]
+34. toStarlog("logic", [{"kind":"text","title":"prolog writes","text":"A blue about garden and.","items":["the","prolog"],"goal":""}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"logic\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n"
+35. parseRuntime("not json")
+   => null
+36. draftSlides("runs", "greeting(Name, S) :- string_concat(\"Hello, \", Name, S).")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+37. textExpr("{A} and {B}")
+   => {"expr":"A : \" and \" : B","vars":["A","B"]}
+38. pString("list book student book \\ ")
+   => "\"list book student book \\\\ \""
+39. goalsOf("main :- writeln(hello).")
+   => ["main :- writeln(hello)"]
+40. toStarlog("idea quickly", [{"kind":"result","title":"writes false about","text":"True with green green simple.","items":["proof garden","teacher person"],"goal":"double(3, Y)"},{"kind":"text","title":"buys","text":"With idea quickly meditates buys.","items":["student dog","writes"],"goal":"greeting(\"Lucian\", S)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"idea quickly\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n"
+41. parseRuntime("not json")
+   => null
+42. draftSlides("student", "double(X, Y) :- Y is X * 2.\nsquare(X, Y) :- Y is X * X.")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+43. textExpr("{A} and {B}")
+   => {"expr":"A : \" and \" : B","vars":["A","B"]}
+44. pString("logic house\n")
+   => "\"logic house\\n\""
+45. goalsOf("main :- writeln(hello).")
+   => ["main :- writeln(hello)"]
+46. toStarlog("false dog proof", [{"kind":"text","title":"garden false","text":"Happy music proof number house apple number prolog.","items":["music","meditates"],"goal":"double(3, Y)"},{"kind":"result","title":"tree","text":"Number buys true.","items":["student data","list runs"],"goal":"double(3, Y)"},{"kind":"result","title":"buys","text":"Thinks teacher cat true the blue writes algorithm green.","items":["writes","teacher"],"goal":"greeting(\"Lucian\", S)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"false dog proof\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n\nslide(5, \"[object Object]\", []).\n"
+47. parseRuntime("junk before\n{\"slides\":[]}")
+   => {"slides":[]}
+48. draftSlides("cat music blue", "reverse_words(S, R) :- split_string(S, \" \", \"\", W), reverse(W, V), atomic_list_concat(V, \" \", R).")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+49. textExpr("\"Quoted\" sells thinks green")
+   => {"expr":"\"\\\"Quoted\\\" sells thinks green\"","vars":[]}
+50. pString("person buys \\ ")
+   => "\"person buys \\\\ \""
+51. goalsOf("greeting(Name, S) :- string_concat(\"Hello, \", Name, S).")
+   => ["greeting(Name, S) :- string_concat(\"Hello, \", Name, S)"]
+52. toStarlog("teacher teacher", [{"kind":"list","title":"cat","text":"Data a cat apple idea a list student.","items":["reads reads","finds"],"goal":"double(3, Y)"},{"kind":"list","title":"the","text":"Buys simple and and.","items":["house student","reads garden"],"goal":"greeting(\"Lucian\", S)"},{"kind":"list","title":"reads green","text":"Buys quickly with meditates cat sells data.","items":["person quickly","blue and"],"goal":"greeting(\"Lucian\", S)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"teacher teacher\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n\nslide(5, \"[object Object]\", []).\n"
+53. parseRuntime("not json")
+   => null
+54. draftSlides("with", "")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+55. textExpr("\"Quoted\" value false sells")
+   => {"expr":"\"\\\"Quoted\\\" value false sells\"","vars":[]}
+56. pString("algorithm list a person")
+   => "\"algorithm list a person\""
+57. goalsOf("reverse_words(S, R) :- split_string(S, \" \", \"\", W), reverse(W, V), atomic_list_concat(V, \" \", R).")
+   => ["reverse_words(S, R) :- split_string(S, \" \", \"\", W), reverse(W, V), atomic_list_concat(V, \" \", R)"]
+58. toStarlog("garden", [{"kind":"title","title":"teacher","text":"Number a thinks.","items":["true","cat green"],"goal":"greeting(\"Lucian\", S)"},{"kind":"list","title":"tree","text":"Finds and reads thinks algorithm happy the.","items":["list","happy"],"goal":""}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"garden\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n"
+59. parseRuntime("{\"error\":\"person garden buys\"}")
+   => {"error":"person garden buys"}
+60. draftSlides("house music logic", "double(X, Y) :- Y is X * 2.\nsquare(X, Y) :- Y is X * X.")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+61. textExpr("back\\slash runs meditates")
+   => {"expr":"\"back\\\\slash runs meditates\"","vars":[]}
+62. pString("writes sells logic \"x\"")
+   => "\"writes sells logic \\\"x\\\"\""
+63. goalsOf("main :- writeln(hello).")
+   => ["main :- writeln(hello)"]
+64. toStarlog("with teacher cat", [{"kind":"text","title":"cat writes number","text":"Cat the writes prolog.","items":["sells","happy"],"goal":"greeting(\"Lucian\", S)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"with teacher cat\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n"
+65. parseRuntime("junk before\n{\"slides\":[]}")
+   => {"slides":[]}
+66. draftSlides("simple", "main :- writeln(hello).")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+67. textExpr("List buys simple logic quickly runs person number.")
+   => {"expr":"\"List buys simple logic quickly runs person number.\"","vars":[]}
+68. pString("quickly proof music house")
+   => "\"quickly proof music house\""
+69. goalsOf("fact(0, 1) :- !.\nfact(N, F) :- N1 is N - 1, fact(N1, F1), F is N * F1.")
+   => ["fact(0, 1) :- !.","fact(N, F) :- N1 is N - 1, fact(N1, F1), F is N * F1"]
+70. toStarlog("green", [{"kind":"text","title":"writes finds idea","text":"Meditates garden dog a.","items":["number blue","runs"],"goal":"double(3, Y)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"green\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n"
+71. parseRuntime("junk before\n{\"slides\":[]}")
+   => {"slides":[]}
+72. draftSlides("prolog buys sells", "")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+73. textExpr("Total: {Total}")
+   => {"expr":"\"Total: \" : Total","vars":["Total"]}
+74. pString("book sells writes meditates \\ ")
+   => "\"book sells writes meditates \\\\ \""
+75. goalsOf("double(X, Y) :- Y is X * 2.\nsquare(X, Y) :- Y is X * X.")
+   => ["double(X, Y) :- Y is X * 2.","square(X, Y) :- Y is X * X"]
+76. toStarlog("algorithm false thinks", [{"kind":"text","title":"number sells apple","text":"Simple music list book a runs writes a prolog.","items":["tree","false runs"],"goal":""}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"algorithm false thinks\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n"
+77. parseRuntime("{\"error\":\"happy green idea\"}")
+   => {"error":"happy green idea"}
+78. draftSlides("list cat", "double(X, Y) :- Y is X * 2.\nsquare(X, Y) :- Y is X * X.")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+79. textExpr("Meditates student the.")
+   => {"expr":"\"Meditates student the.\"","vars":[]}
+80. pString("with")
+   => "\"with\""
+81. goalsOf("reverse_words(S, R) :- split_string(S, \" \", \"\", W), reverse(W, V), atomic_list_concat(V, \" \", R).")
+   => ["reverse_words(S, R) :- split_string(S, \" \", \"\", W), reverse(W, V), atomic_list_concat(V, \" \", R)"]
+82. toStarlog("green cat reads", [{"kind":"list","title":"sells quickly","text":"Algorithm simple proof.","items":["reads","student"],"goal":"greeting(\"Lucian\", S)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"green cat reads\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n"
+83. parseRuntime("")
+   => null
+84. draftSlides("finds and", "fact(0, 1) :- !.\nfact(N, F) :- N1 is N - 1, fact(N1, F1), F is N * F1.")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+85. textExpr("back\\slash algorithm")
+   => {"expr":"\"back\\\\slash algorithm\"","vars":[]}
+86. pString("idea book \"x\"")
+   => "\"idea book \\\"x\\\"\""
+87. goalsOf("reverse_words(S, R) :- split_string(S, \" \", \"\", W), reverse(W, V), atomic_list_concat(V, \" \", R).")
+   => ["reverse_words(S, R) :- split_string(S, \" \", \"\", W), reverse(W, V), atomic_list_concat(V, \" \", R)"]
+88. toStarlog("garden tree", [{"kind":"result","title":"algorithm","text":"Student simple false and data happy green.","items":["proof music","finds list"],"goal":"double(3, Y)"},{"kind":"list","title":"with","text":"Music about reads music.","items":["simple","blue"],"goal":""}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"garden tree\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n"
+89. parseRuntime("not json")
+   => null
+90. draftSlides("idea the", "double(X, Y) :- Y is X * 2.\nsquare(X, Y) :- Y is X * X.")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+91. textExpr("{A} and {B}")
+   => {"expr":"A : \" and \" : B","vars":["A","B"]}
+92. pString("music number \"x\"")
+   => "\"music number \\\"x\\\"\""
+93. goalsOf("fact(0, 1) :- !.\nfact(N, F) :- N1 is N - 1, fact(N1, F1), F is N * F1.")
+   => ["fact(0, 1) :- !.","fact(N, F) :- N1 is N - 1, fact(N1, F1), F is N * F1"]
+94. toStarlog("simple blue proof", [{"kind":"title","title":"true and tree","text":"Person happy meditates.","items":["simple person","runs"],"goal":""},{"kind":"result","title":"music garden happy","text":"Cat runs quickly.","items":["runs","proof"],"goal":"double(3, Y)"},{"kind":"result","title":"tree house a","text":"Algorithm data runs list a data.","items":["student","algorithm person"],"goal":"greeting(\"Lucian\", S)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"simple blue proof\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n\nslide(5, \"[object Object]\", []).\n"
+95. parseRuntime("")
+   => null
+96. draftSlides("list meditates prolog", "main :- writeln(hello).")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+97. textExpr("House tree sells teacher thinks.")
+   => {"expr":"\"House tree sells teacher thinks.\"","vars":[]}
+98. pString("quickly house apple blue")
+   => "\"quickly house apple blue\""
+99. goalsOf("double(X, Y) :- Y is X * 2.\nsquare(X, Y) :- Y is X * X.")
+   => ["double(X, Y) :- Y is X * 2.","square(X, Y) :- Y is X * X"]
+100. toStarlog("list runs", [{"kind":"list","title":"logic","text":"Finds logic about happy thinks meditates.","items":["the logic","house"],"goal":""},{"kind":"text","title":"data","text":"Number person writes thinks the.","items":["teacher","and"],"goal":"greeting(\"Lucian\", S)"},{"kind":"title","title":"value","text":"Quickly value idea and data finds true algorithm buys.","items":["list","reads prolog"],"goal":"double(3, Y)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"list runs\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n\nslide(5, \"[object Object]\", []).\n"
+101. parseRuntime("{\"slides\":[{\"title\":\"meditates\",\"text\":\"writes person\"}]}")
+   => {"slides":[{"title":"meditates","text":"writes person"}]}
+102. draftSlides("house thinks and", "main :- writeln(hello).")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+103. textExpr("{A} and {B}")
+   => {"expr":"A : \" and \" : B","vars":["A","B"]}
+104. pString("writes number")
+   => "\"writes number\""
+105. goalsOf("fact(0, 1) :- !.\nfact(N, F) :- N1 is N - 1, fact(N1, F1), F is N * F1.")
+   => ["fact(0, 1) :- !.","fact(N, F) :- N1 is N - 1, fact(N1, F1), F is N * F1"]
+106. toStarlog("apple", [{"kind":"title","title":"reads prolog","text":"Finds teacher person the tree false dog prolog.","items":["blue teacher","cat"],"goal":""}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"apple\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n"
+107. parseRuntime("{\"error\":\"apple the\"}")
+   => {"error":"apple the"}
+108. draftSlides("false", "main :- writeln(hello).")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+109. textExpr("\"Quoted\" meditates")
+   => {"expr":"\"\\\"Quoted\\\" meditates\"","vars":[]}
+110. pString("writes\n")
+   => "\"writes\\n\""
+111. goalsOf("fact(0, 1) :- !.\nfact(N, F) :- N1 is N - 1, fact(N1, F1), F is N * F1.")
+   => ["fact(0, 1) :- !.","fact(N, F) :- N1 is N - 1, fact(N1, F1), F is N * F1"]
+112. toStarlog("house dog reads", [{"kind":"title","title":"and writes value","text":"Green buys about tree and algorithm with and person.","items":["reads value","tree the"],"goal":""},{"kind":"text","title":"teacher","text":"Tree the teacher book buys.","items":["runs","value sells"],"goal":"greeting(\"Lucian\", S)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"house dog reads\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n"
+113. parseRuntime("{\"error\":\"number quickly house sells\"}")
+   => {"error":"number quickly house sells"}
+114. draftSlides("list runs", "double(X, Y) :- Y is X * 2.\nsquare(X, Y) :- Y is X * X.")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+115. textExpr("{A} and {B}")
+   => {"expr":"A : \" and \" : B","vars":["A","B"]}
+116. pString("meditates simple \"x\"")
+   => "\"meditates simple \\\"x\\\"\""
+117. goalsOf("fact(0, 1) :- !.\nfact(N, F) :- N1 is N - 1, fact(N1, F1), F is N * F1.")
+   => ["fact(0, 1) :- !.","fact(N, F) :- N1 is N - 1, fact(N1, F1), F is N * F1"]
+118. toStarlog("a data logic", [{"kind":"text","title":"cat","text":"Garden thinks algorithm runs teacher writes about the.","items":["reads","prolog"],"goal":""},{"kind":"list","title":"book writes finds","text":"Teacher thinks runs data apple algorithm student green.","items":["number algorithm","happy"],"goal":"double(3, Y)"},{"kind":"title","title":"house student","text":"Reads book tree green prolog tree runs green proof.","items":["sells","buys teacher"],"goal":"greeting(\"Lucian\", S)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"a data logic\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n\nslide(5, \"[object Object]\", []).\n"
+119. parseRuntime("junk before\n{\"slides\":[]}")
+   => {"slides":[]}
+120. draftSlides("happy student true", "")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+121. textExpr("{A} and {B}")
+   => {"expr":"A : \" and \" : B","vars":["A","B"]}
+122. pString("person \\ ")
+   => "\"person \\\\ \""
+123. goalsOf("fact(0, 1) :- !.\nfact(N, F) :- N1 is N - 1, fact(N1, F1), F is N * F1.")
+   => ["fact(0, 1) :- !.","fact(N, F) :- N1 is N - 1, fact(N1, F1), F is N * F1"]
+124. toStarlog("tree person", [{"kind":"text","title":"list","text":"False garden algorithm.","items":["blue","with"],"goal":"greeting(\"Lucian\", S)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"tree person\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n"
+125. parseRuntime("")
+   => null
+126. draftSlides("blue algorithm data", "reverse_words(S, R) :- split_string(S, \" \", \"\", W), reverse(W, V), atomic_list_concat(V, \" \", R).")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+127. textExpr("Total: {X}")
+   => {"expr":"\"Total: \" : X","vars":["X"]}
+128. pString("prolog data student")
+   => "\"prolog data student\""
+129. goalsOf("main :- writeln(hello).")
+   => ["main :- writeln(hello)"]
+130. toStarlog("data garden the", [{"kind":"text","title":"runs","text":"True runs house writes about apple.","items":["quickly","book"],"goal":""},{"kind":"text","title":"logic","text":"Quickly buys student thinks garden simple prolog.","items":["buys writes","true value"],"goal":"greeting(\"Lucian\", S)"},{"kind":"text","title":"about apple","text":"Happy writes proof buys logic house writes.","items":["cat meditates","person"],"goal":""}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"data garden the\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n\nslide(5, \"[object Object]\", []).\n"
+131. parseRuntime("{\"error\":\"logic teacher\"}")
+   => {"error":"logic teacher"}
+132. draftSlides("true proof", "greeting(Name, S) :- string_concat(\"Hello, \", Name, S).")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+133. textExpr("back\\slash prolog")
+   => {"expr":"\"back\\\\slash prolog\"","vars":[]}
+134. pString("music blue simple\n")
+   => "\"music blue simple\\n\""
+135. goalsOf("greeting(Name, S) :- string_concat(\"Hello, \", Name, S).")
+   => ["greeting(Name, S) :- string_concat(\"Hello, \", Name, S)"]
+136. toStarlog("teacher writes", [{"kind":"result","title":"garden","text":"Quickly dog teacher algorithm.","items":["number algorithm","prolog"],"goal":"double(3, Y)"},{"kind":"title","title":"music","text":"Book about proof book.","items":["with value","about list"],"goal":"double(3, Y)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"teacher writes\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n"
+137. parseRuntime("not json")
+   => null
+138. draftSlides("list value", "greeting(Name, S) :- string_concat(\"Hello, \", Name, S).")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+139. textExpr("\"Quoted\" teacher")
+   => {"expr":"\"\\\"Quoted\\\" teacher\"","vars":[]}
+140. pString("true apple number")
+   => "\"true apple number\""
+141. goalsOf("fact(0, 1) :- !.\nfact(N, F) :- N1 is N - 1, fact(N1, F1), F is N * F1.")
+   => ["fact(0, 1) :- !.","fact(N, F) :- N1 is N - 1, fact(N1, F1), F is N * F1"]
+142. toStarlog("quickly and happy", [{"kind":"title","title":"cat","text":"Number proof apple dog.","items":["happy","the"],"goal":""},{"kind":"title","title":"with logic proof","text":"Happy about proof finds with.","items":["happy person","idea"],"goal":"greeting(\"Lucian\", S)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"quickly and happy\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n"
+143. parseRuntime("{\"error\":\"teacher proof\"}")
+   => {"error":"teacher proof"}
+144. draftSlides("student true number", "double(X, Y) :- Y is X * 2.\nsquare(X, Y) :- Y is X * X.")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+145. textExpr("{A} and {B}")
+   => {"expr":"A : \" and \" : B","vars":["A","B"]}
+146. pString("a")
+   => "\"a\""
+147. goalsOf("double(X, Y) :- Y is X * 2.\nsquare(X, Y) :- Y is X * X.")
+   => ["double(X, Y) :- Y is X * 2.","square(X, Y) :- Y is X * X"]
+148. toStarlog("quickly tree", [{"kind":"title","title":"meditates","text":"Dog algorithm and with music music runs the.","items":["the person","reads sells"],"goal":""},{"kind":"list","title":"sells","text":"Garden finds proof quickly meditates.","items":["quickly","happy"],"goal":"greeting(\"Lucian\", S)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"quickly tree\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n"
+149. parseRuntime("not json")
+   => null
+150. draftSlides("true book blue", "greeting(Name, S) :- string_concat(\"Hello, \", Name, S).")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+151. textExpr("Reads runs sells algorithm with simple value.")
+   => {"expr":"\"Reads runs sells algorithm with simple value.\"","vars":[]}
+152. pString("sells simple")
+   => "\"sells simple\""
+153. goalsOf("double(X, Y) :- Y is X * 2.\nsquare(X, Y) :- Y is X * X.")
+   => ["double(X, Y) :- Y is X * 2.","square(X, Y) :- Y is X * X"]
+154. toStarlog("data idea true", [{"kind":"result","title":"data","text":"Blue about garden.","items":["false","with garden"],"goal":"greeting(\"Lucian\", S)"},{"kind":"list","title":"number","text":"About the runs teacher student quickly idea.","items":["prolog","garden a"],"goal":""},{"kind":"result","title":"algorithm quickly apple","text":"True logic buys teacher quickly true value false and.","items":["cat","teacher a"],"goal":"double(3, Y)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"data idea true\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n\nslide(5, \"[object Object]\", []).\n"
+155. parseRuntime("")
+   => null
+156. draftSlides("meditates happy a", "double(X, Y) :- Y is X * 2.\nsquare(X, Y) :- Y is X * X.")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+157. textExpr("{A} and {B}")
+   => {"expr":"A : \" and \" : B","vars":["A","B"]}
+158. pString("meditates \\ ")
+   => "\"meditates \\\\ \""
+159. goalsOf("greeting(Name, S) :- string_concat(\"Hello, \", Name, S).")
+   => ["greeting(Name, S) :- string_concat(\"Hello, \", Name, S)"]
+160. toStarlog("teacher", [{"kind":"title","title":"meditates","text":"Garden idea happy music house.","items":["data","music prolog"],"goal":""},{"kind":"title","title":"data person","text":"Prolog true a and happy.","items":["blue person","buys"],"goal":"greeting(\"Lucian\", S)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"teacher\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n"
+161. parseRuntime("")
+   => null
+162. draftSlides("true and", "double(X, Y) :- Y is X * 2.\nsquare(X, Y) :- Y is X * X.")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+163. textExpr("back\\slash prolog")
+   => {"expr":"\"back\\\\slash prolog\"","vars":[]}
+164. pString("algorithm buys happy")
+   => "\"algorithm buys happy\""
+165. goalsOf("reverse_words(S, R) :- split_string(S, \" \", \"\", W), reverse(W, V), atomic_list_concat(V, \" \", R).")
+   => ["reverse_words(S, R) :- split_string(S, \" \", \"\", W), reverse(W, V), atomic_list_concat(V, \" \", R)"]
+166. toStarlog("thinks green", [{"kind":"list","title":"reads","text":"Meditates logic apple value logic sells simple student.","items":["meditates","simple finds"],"goal":"greeting(\"Lucian\", S)"},{"kind":"title","title":"simple","text":"Teacher simple reads proof finds blue.","items":["reads teacher","writes"],"goal":"double(3, Y)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"thinks green\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n"
+167. parseRuntime("not json")
+   => null
+168. draftSlides("garden simple", "reverse_words(S, R) :- split_string(S, \" \", \"\", W), reverse(W, V), atomic_list_concat(V, \" \", R).")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+169. textExpr("back\\slash sells")
+   => {"expr":"\"back\\\\slash sells\"","vars":[]}
+170. pString("value\n")
+   => "\"value\\n\""
+171. goalsOf("main :- writeln(hello).")
+   => ["main :- writeln(hello)"]
+172. toStarlog("writes house", [{"kind":"text","title":"idea runs","text":"Sells writes student list student.","items":["apple true","reads"],"goal":""},{"kind":"result","title":"false sells happy","text":"Apple true simple.","items":["with quickly","green music"],"goal":"double(3, Y)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"writes house\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n"
+173. parseRuntime("not json")
+   => null
+174. draftSlides("music", "")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+175. textExpr("False green and with simple green buys cat.")
+   => {"expr":"\"False green and with simple green buys cat.\"","vars":[]}
+176. pString("false \"x\"")
+   => "\"false \\\"x\\\"\""
+177. goalsOf("")
+   => []
+178. toStarlog("algorithm", [{"kind":"result","title":"meditates meditates finds","text":"With idea a quickly and writes.","items":["music","prolog"],"goal":"double(3, Y)"},{"kind":"title","title":"book proof","text":"Apple value algorithm quickly.","items":["about","buys green"],"goal":"double(3, Y)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"algorithm\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n"
+179. parseRuntime("{\"error\":\"number number a meditates\"}")
+   => {"error":"number number a meditates"}
+180. draftSlides("runs quickly book", "double(X, Y) :- Y is X * 2.\nsquare(X, Y) :- Y is X * X.")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+181. textExpr("\"Quoted\" a")
+   => {"expr":"\"\\\"Quoted\\\" a\"","vars":[]}
+182. pString("book logic idea \"x\"")
+   => "\"book logic idea \\\"x\\\"\""
+183. goalsOf("greeting(Name, S) :- string_concat(\"Hello, \", Name, S).")
+   => ["greeting(Name, S) :- string_concat(\"Hello, \", Name, S)"]
+184. toStarlog("writes", [{"kind":"title","title":"about list dog","text":"With true value.","items":["value quickly","the idea"],"goal":""}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"writes\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n"
+185. parseRuntime("junk before\n{\"slides\":[]}")
+   => {"slides":[]}
+186. draftSlides("thinks", "main :- writeln(hello).")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+187. textExpr("Person person book list happy.")
+   => {"expr":"\"Person person book list happy.\"","vars":[]}
+188. pString("buys thinks with \\ ")
+   => "\"buys thinks with \\\\ \""
+189. goalsOf("main :- writeln(hello).")
+   => ["main :- writeln(hello)"]
+190. toStarlog("teacher", [{"kind":"result","title":"with list","text":"Buys tree green with garden data list student.","items":["apple","blue quickly"],"goal":""},{"kind":"text","title":"simple prolog algorithm","text":"Meditates logic thinks false.","items":["prolog true","apple"],"goal":"greeting(\"Lucian\", S)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"teacher\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n"
+191. parseRuntime("junk before\n{\"slides\":[]}")
+   => {"slides":[]}
+192. draftSlides("cat with the", "")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+193. textExpr("\"Quoted\" list prolog")
+   => {"expr":"\"\\\"Quoted\\\" list prolog\"","vars":[]}
+194. pString("teacher dog")
+   => "\"teacher dog\""
+195. goalsOf("reverse_words(S, R) :- split_string(S, \" \", \"\", W), reverse(W, V), atomic_list_concat(V, \" \", R).")
+   => ["reverse_words(S, R) :- split_string(S, \" \", \"\", W), reverse(W, V), atomic_list_concat(V, \" \", R)"]
+196. toStarlog("reads", [{"kind":"title","title":"proof logic","text":"Data student tree dog with value.","items":["meditates","music finds"],"goal":"greeting(\"Lucian\", S)"},{"kind":"result","title":"music logic","text":"And quickly a.","items":["writes","thinks and"],"goal":""},{"kind":"text","title":"dog runs green","text":"Garden prolog idea reads dog number simple sells blue.","items":["music the","person"],"goal":"greeting(\"Lucian\", S)"}])
+   => "% Made with Visual Starlog (Lucian Office). Starlog syntax: Result is function(Args);\n% \"a\":\"b\" joins text, [1]&[2] joins lists, L >> length chains. Runs with prolog/vs_runtime.pl.\n\ntitle(\"reads\").\n\nslide(1, \"Welcome\", [text(\"A presentation written in Prolog, with Starlog.\"),\n        character(\"Hello! Press the right arrow to go on.\")]).\n\nslide(2, \"Starlog does the sums\", Items) :-\n    Total is 12 * 4,\n    Names is [\"Ann\"] & [\"Ben\", \"Cal\"],\n    Count is Names >> length,\n    T1 is Count : \" people, \" : Total : \" lessons.\",\n    Items = [text(T1),\n        run(\"Greeting is \\\"Hello\\\" : \\\" \\\" : \\\"World\\\"\")].\n\nslide(3, \"[object Object]\", []).\n\nslide(4, \"[object Object]\", []).\n\nslide(5, \"[object Object]\", []).\n"
+197. parseRuntime("{\"slides\":[{\"title\":\"teacher writes\",\"text\":\"finds\"}]}")
+   => {"slides":[{"title":"teacher writes","text":"finds"}]}
+198. draftSlides("true", "main :- writeln(hello).")
+   => [{"n":1,"title":"Welcome","draft":true,"items":[{"kind":"text","text":"A presentation written in Prolog, with Starlog."},{"kind":"character","text":"Hello! Press the right arrow to go on."}]},{"n":2,"title":"Starlog does the sums","draft":true,"items":[{"kind":"text","text":"{Count} people, {Total} lessons."},{"kind":"run","starlog":"Greeting is \"Hello\" : \" \" : \"World\"","prolog":"","answers":["(run the presentation to see the answer)"],"ok":true}]}]
+199. textExpr("\"Quoted\" sells logic green")
+   => {"expr":"\"\\\"Quoted\\\" sells logic green\"","vars":[]}
+200. pString("a apple prolog")
+   => "\"a apple prolog\""
