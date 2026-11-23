@@ -85,7 +85,7 @@ function renderEditor() {
     if (it.kind === 'bullets') body = field('One point a line ({Name} shows a variable)', el('textarea', { value: (it.items ?? []).join('\n'), onchange: (e) => set({ items: e.target.value.split('\n').map((x) => x.trim()).filter(Boolean) }, 'edited points') }));
     else if (it.kind === 'run') body = field('A goal in Starlog or Prolog', el('textarea', { className: 'code', value: it.goal ?? '', placeholder: 'e.g. L is [1, 2] & [3]', onchange: (e) => set({ goal: e.target.value.trim() }, 'edited a goal') }));
     else if (it.kind === 'open') body = field('App', el('select', { onchange: (e) => set({ app: e.target.value }, 'chose an app') }, ['writer', 'counter', 'presenter', 'etcher', 'tabler', 'studio', 'moviemr', 'lucianoffice', 'iedit'].map((a) => el('option', { value: a, textContent: a, selected: a === it.app }))));
-    else if (['doc', 'csv', 'svg', 'image'].includes(it.kind)) body = field(`File, from the presentation's folder (${folder()})`, el('input', { type: 'text', value: it.path ?? '', placeholder: { doc: 'plan.writer.json', csv: 'prices.csv', svg: 'flow.svg', image: 'photo.jpg' }[it.kind], onchange: (e) => set({ path: e.target.value.trim() }, 'chose a file') }));
+    else if (['doc', 'csv', 'svg', 'image', 'prologscript'].includes(it.kind)) body = field(`File, from the presentation's folder (${folder()})`, el('input', { type: 'text', value: it.path ?? '', placeholder: { doc: 'plan.writer.json', csv: 'prices.csv', svg: 'flow.svg', image: 'photo.jpg', prologscript: 'paint.pl' }[it.kind], onchange: (e) => set({ path: e.target.value.trim() }, 'chose a file') }));
     else body = field(it.kind === 'character' ? 'The character says' : 'Text ({Name} shows a variable from the slide\'s goals)', el('textarea', { value: it.text ?? '', onchange: (e) => set({ text: e.target.value }, 'edited text') }));
     return el('div', { className: 'item' },
       el('div', { className: 'row' }, el('b', {}, kind.label), el('span', { className: 'spacer', style: 'flex:1' }),
@@ -99,7 +99,7 @@ function renderEditor() {
     field('Slide title', el('input', { type: 'text', value: s.title, onchange: (e) => change(setSlide(P(), i, { title: e.target.value }), 'renamed a slide') })),
     field('Goals that run first (Starlog or Prolog, one a line), e.g. Total is 12 * 4', el('textarea', { className: 'code', value: s.prolog ?? '', placeholder: 'Total is 12 * 4\nNames is ["Ann"] & ["Ben"]\nCount is Names >> length', onchange: (e) => change(setSlide(P(), i, { prolog: e.target.value }), 'edited the goals') })),
     ...items,
-    el('div', { className: 'row' }, kindSel, btn('Add', () => { const k = kindSel.value; change(addItem(P(), i, { kind: k, ...(k === 'bullets' ? { items: [] } : k === 'run' ? { goal: '' } : k === 'open' ? { app: 'writer' } : ['doc', 'csv', 'svg', 'image'].includes(k) ? { path: '' } : { text: '' }) }), 'added an item'); })),
+    el('div', { className: 'row' }, kindSel, btn('Add', () => { const k = kindSel.value; change(addItem(P(), i, { kind: k, ...(k === 'bullets' ? { items: [] } : k === 'run' ? { goal: '' } : k === 'open' ? { app: 'writer' } : ['doc', 'csv', 'svg', 'image', 'prologscript'].includes(k) ? { path: '' } : { text: '' }) }), 'added an item'); })),
     el('div', { className: 'row' },
       btn('Move up', () => { change(moveSlide(P(), i, i - 1), 'moved a slide'); current = Math.max(0, i - 1); render(); }, { disabled: !i }),
       btn('Move down', () => { change(moveSlide(P(), i, i + 1), 'moved a slide'); current = Math.min(P().slides.length - 1, i + 1); render(); }, { disabled: i === p.slides.length - 1 }),
@@ -127,12 +127,32 @@ function renderView() {
     v.replaceChildren(
       el('label', {}, 'Starlog folder (from your home folder)', el('input', { type: 'text', value: settings.starlog, onchange: (e) => { settings.starlog = e.target.value.trim(); persist(); } })),
       el('label', {}, 'Visual Starlog folder', el('input', { type: 'text', value: settings.vs, onchange: (e) => { settings.vs = e.target.value.trim(); persist(); } })),
-      el('p', { className: 'note' }, `This presentation and its files are in ${folder()}. Put Writer documents (.writer.json), Counter tables (.csv) and Etcher drawings (.svg) there to show them.`));
+      el('p', { className: 'note' }, `This presentation and its files are in ${folder()}. Put Writer documents (.writer.json), Counter tables (.csv), Etcher drawings (.svg) and PrologScript programs (.pl) there to show them.`));
   }
 }
 // Buttons that open apps; the character speaks when a slide is shown in the presentation.
 function wire(box) {
+  for (const host of box.querySelectorAll('.ps-slide')) mountPrologScript(host);
   for (const b of box.querySelectorAll('button.open')) b.onclick = () => { if (inFrame) parent.postMessage({ type: 'lucianos.do', text: `open ${b.dataset.app}` }, location.origin); else window.open(`/apps/${b.dataset.app}/`, '_blank'); };
+}
+
+// A PrologScript program in a slide, run by the PrologScript plug-in (the prologscript app, beside
+// this one). Without it, the slide shows the program and where to get the plug-in.
+let plugin = null;
+const running = new Set();
+async function mountPrologScript(host) {
+  const path = host.dataset.path;
+  if (!path) { host.replaceChildren(el('p', { className: 'note', textContent: "Choose the program's .pl file, from the presentation's folder." })); return; }
+  let source = host.dataset.source;
+  try { if (source === undefined) source = (await api.files.read(path.startsWith('/') ? path : `${folder()}/${path}`)).content; } catch (err) { host.replaceChildren(el('p', { className: 'err', textContent: `Couldn't read ${path}: ${err.message}` })); return; }
+  try { plugin ??= await import('../prologscript/plugin.js'); } catch {
+    host.replaceChildren(el('p', { className: 'note', textContent: 'This slide runs a PrologScript program. Install PrologScript from the App Store (Apps › App Store) to run it here.' }), el('pre', { className: 'source', textContent: source }));
+    return;
+  }
+  for (const r of running) if (!r.host.isConnected) { r.ps?.destroy(); running.delete(r); }
+  const r = { host };
+  running.add(r);
+  r.ps = await plugin.mountProgram(host, source, { title: path });
 }
 
 // ------------------------------------------------------------------ presenting
@@ -217,6 +237,7 @@ async function init() {
   $('stop').onclick = stopShow;
   addEventListener('keydown', (e) => {
     if (showing) {
+      if (e.target.closest?.('.ps-app')) return; // keys in a running PrologScript program are its own
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); current += 1; showSlide(); }
       if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); current -= 1; showSlide(); }
       if (e.key === 'Escape') stopShow();

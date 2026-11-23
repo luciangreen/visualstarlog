@@ -10,6 +10,7 @@ Build slides visually, and Visual Starlog writes them as a Starlog file. It runs
 - **Lucian Office documents** (Writer), **tables** (Counter's CSV) and **drawings** (Etcher's SVG);
 - pictures;
 - buttons that **open LucianOS apps**;
+- **PrologScript programs** that run in the slide: painting, drawing, menus and more, written in Prolog (with the [PrologScript](https://github.com/luciangreen/prologscript) plug-in);
 - lines the **RetroMR character** says when the slide is shown.
 
 ## Starlog in a slide
@@ -41,7 +42,8 @@ Items:
 - `run(GoalText)`;
 - `doc(Path)` (a `.writer.json` or any Lucian Office document);
 - `csv(Path)`, `svg(Path)`, `image(Path)`;
-- `character(T)`, `open(App)`.
+- `character(T)`, `open(App)`;
+- `prologscript(Path)`: a PrologScript program, run in the slide (see Plug-ins).
 
 Paths are relative to the presentation's folder. A slide whose goals fail, or whose file is missing, shows the mistake on that slide; the rest still run.
 
@@ -61,6 +63,12 @@ swipl -q -g vs_main -s prolog/vs_runtime.pl -- json   STARLOG_DIR presentation.p
 swipl -q -g vs_main -s prolog/vs_runtime.pl -- html   STARLOG_DIR presentation.pl presentation.html
 swipl -q -g vs_main -s prolog/vs_runtime.pl -- prolog STARLOG_DIR presentation.pl
 ```
+
+## Plug-ins
+
+**PrologScript** runs a Prolog program in a slide, its commands turned into things you see: menus and pop-up menus, painting, shapes in groups and layers, drag and drop, and pointers. Add an item of the kind *PrologScript program* and give it a `.pl` file from the presentation's folder, or write `prologscript("bubbles.pl")` in a slide by hand (see `examples/prologscript.pl`). The program runs in the preview and when presenting; its code is in a fold under it, with the clause that last ran marked. While you use the program, the arrow keys are its own, not the slide changer's.
+
+Install it from the App Store (Apps › App Store), or put the `prologscript` repo in `apps/` beside this one. Without it, the slide shows the program's code and says where to get the plug-in. In the standalone HTML export, the slide shows the code.
 
 ## Install
 

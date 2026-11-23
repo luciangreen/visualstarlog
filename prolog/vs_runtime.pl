@@ -12,6 +12,7 @@
 % Items: text(T), heading(T), quote(T), bullets([T, ...]), run(GoalText) (show a goal in
 % Starlog, its plain Prolog, and its answers), doc(Path) (a Lucian Office document),
 % csv(Path) (a table, e.g. from Counter), svg(Path) (a drawing, e.g. from Etcher),
+% prologscript(Path) (a PrologScript program, run in the slide by the PrologScript plug-in),
 % image(Path), character(T) (the RetroMR character says it), open(App) (opens a LucianOS
 % app). Paths are relative to the presentation's folder.
 
@@ -90,6 +91,7 @@ vs_item(_, run(G), Item) :- !, vs_run_item(G, Item).
 vs_item(Base, doc(P), Item) :- !, catch(vs_doc(Base, P, Item), E, (vs_error_text(E, M), vs_string(P, PS), Item = _{kind:error, text:M, path:PS})).
 vs_item(Base, csv(P), Item) :- !, catch(vs_csv(Base, P, Item), E, (vs_error_text(E, M), Item = _{kind:error, text:M})).
 vs_item(Base, svg(P), Item) :- !, catch(vs_svg(Base, P, Item), E, (vs_error_text(E, M), Item = _{kind:error, text:M})).
+vs_item(Base, prologscript(P), Item) :- !, catch(vs_prologscript(Base, P, Item), E, (vs_error_text(E, M), Item = _{kind:error, text:M})).
 vs_item(_, X, _{kind:text, text:S}) :- vs_string(X, S).
 
 % run("X is \"Hello\" : \" \" : \"World\""): the goal as written (Starlog), its plain Prolog
@@ -131,6 +133,11 @@ vs_svg(Base, P, _{kind:svg, svg:S}) :-
     vs_path(Base, P, Abs),
     read_file_to_string(Abs, S0, [encoding(utf8)]),
     ( sub_string(S0, Before, _, _, "<svg") -> sub_string(S0, Before, _, 0, S) ; throw(error(format("~w is not an SVG drawing", [P]), _)) ).
+
+% a PrologScript program: its source, which the app runs with the PrologScript plug-in
+vs_prologscript(Base, P, _{kind:prologscript, path:PS, source:S}) :-
+    vs_path(Base, P, Abs), vs_string(P, PS),
+    read_file_to_string(Abs, S, [encoding(utf8)]).
 
 vs_title(T) :- ( catch(user:title(T0), _, fail) -> vs_string(T0, T) ; T = "Untitled presentation" ).
 
@@ -175,6 +182,8 @@ vs_item_html(character, I, S) :- esc(I.text, E), format(S, "<div class=\"say\"><
 vs_item_html(open, I, S) :- esc(I.app, E), format(S, "<p><em>Opens ~w in LucianOS</em></p>~n", [E]).
 vs_item_html(image, I, S) :- esc(I.path, E), format(S, "<p><img src=\"~w\" alt=\"\" style=\"max-width:100%\"></p>~n", [E]).
 vs_item_html(svg, I, S) :- format(S, "<div>~w</div>~n", [I.svg]).
+vs_item_html(prologscript, I, S) :- esc(I.path, EP), esc(I.source, ES),
+    format(S, "<p><em>A PrologScript program (~w): it runs in Visual Starlog with the PrologScript plug-in.</em></p><pre>~w</pre>~n", [EP, ES]).
 vs_item_html(run, I, S) :-
     esc(I.starlog, E1), esc(I.prolog, E2),
     format(S, "<div class=\"run\"><pre>~w</pre>", [E1]),

@@ -64,3 +64,12 @@ test('the character builds the presentation and moves between slides, and change
   assert.equal(presOf(doc).slides.length, 3);
   assert.match(await say('go to slide 7'), /There's no slide 7/);
 });
+
+test('a PrologScript program in a slide', () => {
+  const p = addItem(addSlide(newPresentation('Demo'), 'Try it'), 2, { kind: 'prologscript', path: 'paint.pl' });
+  assert.match(toStarlog(p), /slide\(3, "Try it", \[prologscript\("paint\.pl"\)\]\)\./);
+  const draft = draftSlides(p)[2];
+  assert.deepEqual(draft.items[0], { kind: 'prologscript', path: 'paint.pl' });
+  assert.match(slideHTML(draft), /<div class="ps-slide" data-path="paint\.pl"><p class="draft">PrologScript: paint\.pl<\/p><\/div>/);
+  assert.match(slideHTML({ title: 'x', items: [{ kind: 'prologscript', path: 'a.pl', source: 'on(start) :- say("<hi>").' }] }), /data-source="on\(start\) :- say\(&quot;&lt;hi&gt;&quot;\)\."/);
+});

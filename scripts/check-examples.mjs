@@ -21,6 +21,12 @@ const run = (mode, file, ...more) => {
 const ex = (f) => path.join(ROOT, 'examples', f);
 const find = (deck, n) => deck?.slides.find((s) => s.n === n);
 
+// prologscript: a slide that runs a PrologScript program gets its source
+const ps = parseRuntime(run('json', ex('prologscript.pl')));
+const psItem = find(ps, 2)?.items[0];
+check(psItem?.kind === 'prologscript' && psItem.path === 'bubbles.pl' && /on\(down\(X, Y\)\)/.test(psItem.source), 'prologscript: the slide carries the program');
+check(/runs in Visual Starlog with the PrologScript plug-in/.test(run('html', ex('prologscript.pl'), path.join(os.tmpdir(), 'vs-ps.html')) + (fs.existsSync(path.join(os.tmpdir(), 'vs-ps.html')) ? fs.readFileSync(path.join(os.tmpdir(), 'vs-ps.html'), 'utf8') : '')), 'prologscript: the exported HTML shows the program');
+
 // hello: Starlog text and list joins, a method chain, the character
 const hello = parseRuntime(run('json', ex('hello.pl')));
 check(hello?.title === 'Hello from Starlog', 'hello: the title');
